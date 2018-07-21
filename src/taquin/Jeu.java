@@ -12,25 +12,28 @@ public class Jeu {
 		
 		while(!p.estFinie()) {
 			System.out.println(p.toString());
-			System.out.println("Choisissez un num�ro parmi les choix possibles (dernier choix = reset)");
+			System.out.println("Choisissez un numéro parmi les choix possibles (dernier choix = reset)");
 			System.out.println(p.getChoix());
-			System.out.print("Votre choix :");
+			System.out.print("Votre choix : ");
 			
 			pause=true;
 			while (pause) {
 				try {
-					p.jouer(sc.nextInt());
-					pause = false;
+						p.jouer(Integer.parseInt(sc.nextLine()));
+						pause = false;
 				}
-				catch (Exception e) {
-					System.out.println(e.toString());
+				catch (RuntimeException e) {
+					if (e instanceof NumberFormatException) 
+						System.out.println(e.toString() + System.lineSeparator() + "Miséricorde, écris un nombre figurant dans la liste, te dis-je !");
+					else
+						System.out.println(e.toString());
 				}
 			}
 			System.out.println("===============");
 		}
 		
 		System.out.println(p.toString());
-		System.out.println("WOW ! Bien jou�, nous sommes fiers de toi !");
+		System.out.println("WOW ! Bien joué, nous sommes fiers de toi !");
 	}
 
 }
